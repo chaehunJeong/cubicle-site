@@ -7,13 +7,13 @@
 <meta name="description" content="사무실, 휴게소, 상업시설에 어울리는 컬러 큐비클과 같은 컬러의 부속품을 함께 납품합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="brand">
+    <a href="./" class="brand">
       <span class="brand-mark" aria-hidden="true"><span class="bg-black"></span><span class="bg-bronze"></span><span class="bg-gold"></span><span class="bg-gray"></span></span>
       <span class="brand-name">[브랜드명]</span>
     </a>
@@ -87,19 +87,19 @@
     <p>제품을 선택하면 상세 정보와 함께 바로 견적을 요청할 수 있습니다.</p>
   </div>
   <div class="grid grid-260">
-    <a href="/product?id=cubicle" class="card product-card">
+    <a href="product?id=cubicle" class="card product-card">
       <div class="product-thumb" aria-hidden="true"><span class="bar bg-black"></span><span class="bar bg-bronze"></span><span class="bar bg-gold"></span><span class="bar bg-gray"></span></div>
       <div class="card-body"><p class="tag">CUBICLE</p><p class="card-title">컬러 큐비클</p><p class="card-desc">화장실 칸막이 본체. 4가지 컬러, 칸 단위 견적.</p><p class="more">견적 문의 →</p></div>
     </a>
-    <a href="/product?id=lock" class="card product-card">
+    <a href="product?id=lock" class="card product-card">
       <div class="product-thumb dark" aria-hidden="true"><span class="device device-lock"><span class="dot-red" style="width:22px;height:22px;border-radius:50%"></span><span style="width:36px;height:28px;border-radius:8px;background:#1E1E1C"></span></span></div>
       <div class="card-body"><p class="tag">ACCESSORY</p><p class="card-title">화장실 잠금장치</p><p class="card-desc">큐비클과 같은 컬러로 마감한 표시형 잠금장치.</p><p class="more">견적 문의 →</p></div>
     </a>
-    <a href="/product?id=bell" class="card product-card">
+    <a href="product?id=bell" class="card product-card">
       <div class="product-thumb dark" aria-hidden="true"><span class="device device-bell"><span class="dot-red" style="width:30px;height:16px;border-radius:4px"></span><span style="width:12px;height:12px;border-radius:50%;background:#6F6F6F"></span></span></div>
       <div class="card-body"><p class="tag">ACCESSORY</p><p class="card-title">비상벨</p><p class="card-desc">긴급 상황 대응용 비상벨, 컬러 마감 적용.</p><p class="more">견적 문의 →</p></div>
     </a>
-    <a href="/product?id=set" class="card product-card">
+    <a href="product?id=set" class="card product-card">
       <div class="product-thumb" aria-hidden="true" style="align-items:center;padding:0"><span style="position:relative;width:170px;height:110px"><span class="bg-black" style="position:absolute;left:0;top:18px;width:90px;height:80px;border-radius:8px;transform:rotate(-12deg)"></span><span class="bg-bronze" style="position:absolute;left:26px;top:12px;width:90px;height:80px;border-radius:8px;transform:rotate(-6deg)"></span><span class="bg-gold" style="position:absolute;left:52px;top:8px;width:90px;height:80px;border-radius:8px"></span><span class="bg-gray" style="position:absolute;left:78px;top:12px;width:90px;height:80px;border-radius:8px;transform:rotate(6deg)"></span></span></div>
       <div class="card-body"><p class="tag">SET</p><p class="card-title">큐비클 + 부속품 세트</p><p class="card-desc">본체와 부속품을 한 컬러로 묶어 일괄 납품.</p><p class="more">견적 문의 →</p></div>
     </a>
@@ -151,7 +151,7 @@
           </select>
         </label>
         <label class="field">예상 수량<input class="input" name="qty" type="text" placeholder="예) 20칸" maxlength="30"></label>
-        <label class="consent full"><input type="checkbox" name="consent"><span>[필수] 개인정보 수집·이용에 동의합니다. 수집 항목: 업체명, 연락처 / 목적: 견적 상담 / 보유기간: 1년 <a href="/privacy">자세히</a></span></label>
+        <label class="consent full"><input type="checkbox" name="consent"><span>[필수] 개인정보 수집·이용에 동의합니다. 수집 항목: 업체명, 연락처 / 목적: 견적 상담 / 보유기간: 1년 <a href="privacy">자세히</a></span></label>
         <div class="turnstile full"></div>
         <p class="form-error full" role="alert"></p>
         <button type="submit" class="btn btn-primary btn-lg full">견적 요청하기</button>
@@ -173,12 +173,12 @@
       <p>상호 [상호명] · 대표 [대표자명] · 사업자등록번호 [000-00-00000]</p>
       <p>주소 [사업장 주소] · 대표번호 [대표번호] · 이메일 [이메일]</p>
     </div>
-    <div><a href="/privacy" style="font-weight: 700">개인정보처리방침</a></div>
+    <div><a href="privacy" style="font-weight: 700">개인정보처리방침</a></div>
   </div>
 </footer>
 
-<script src="/assets/config.js"></script>
-<script src="/assets/inquiry-form.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/inquiry-form.js"></script>
 <script>
   document.addEventListener('inquiry:sent', function (e) {
     e.target.hidden = true;
