@@ -12,6 +12,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Noto Sans KR', system-ui, sans-serif; font-size: 15px; line-height: 1.55; }
 h1, h2, p { margin: 0; }
 a { color: var(--accent); }

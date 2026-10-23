@@ -32,8 +32,40 @@
     return b;
   });
 
+  // 실사진 썸네일 → 큰 화면에 표시
+  var stage = document.getElementById('stage');
+  var stagePhoto = document.getElementById('stage-photo');
+  var thumbs = document.getElementById('thumbs');
+  var thumbButtons = product.photos.map(function (ph) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', ph.alt + ' 크게 보기');
+    b.innerHTML = '<img loading="lazy">';
+    b.firstChild.src = ph.src;
+    b.firstChild.alt = '';
+    b.addEventListener('click', function () { showPhoto(ph, b); });
+    thumbs.appendChild(b);
+    return b;
+  });
+  if (!product.photos.length) thumbs.innerHTML = '<div class="empty" style="grid-column: 1 / -1">사진 준비 중</div>';
+
+  function showPhoto(ph, active) {
+    stagePhoto.src = ph.src;
+    stagePhoto.hidden = false;
+    stage.classList.add('show-photo');
+    stage.setAttribute('aria-label', ph.alt);
+    thumbButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === active)); });
+  }
+
+  function hidePhoto() {
+    stagePhoto.hidden = true;
+    stage.classList.remove('show-photo');
+    thumbButtons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+  }
+
   function setColor(c) {
     color = c;
+    hidePhoto();
     buttons.forEach(function (b, i) { b.setAttribute('aria-pressed', String(C.colors[i] === c)); });
     document.querySelectorAll('#stage .door').forEach(function (d) { d.style.background = c.hex; });
     document.getElementById('stage').setAttribute('aria-label', c.name + ' 컬러 ' + product.name + ' 미리보기');

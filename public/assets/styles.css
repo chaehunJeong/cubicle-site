@@ -21,6 +21,8 @@
 }
 
 * { box-sizing: border-box; }
+/* display 를 지정한 클래스(.done 등)가 hidden 속성을 덮어쓰지 않도록 */
+[hidden] { display: none !important; }
 body {
   margin: 0;
   background: var(--bg);
@@ -133,6 +135,8 @@ h1, h2, p { margin: 0; }
 .product-thumb { height: 180px; background: var(--bg-deep); display: flex; align-items: flex-end; justify-content: center; gap: 4px; padding: 20px 28px 0; }
 .product-thumb.dark { background: #3A3836; align-items: center; padding: 0; }
 .product-thumb .bar { flex: 1; height: 140px; }
+.product-thumb.photo { padding: 0; }
+.product-thumb.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .product-card .card-body { padding: 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .product-card .card-title { font-size: 19px; }
 .product-card .card-desc { flex: 1; }
@@ -221,7 +225,13 @@ legend { font-size: 14px; font-weight: 500; padding: 0; margin-bottom: 8px; }
 }
 .detail-stage .door { height: 420px; transition: background-color .2s; }
 .thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.thumbs div { height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); }
+.thumbs button { height: 96px; padding: 0; border: none; border-radius: 8px; overflow: hidden; background: #DDD7CC; cursor: pointer; }
+.thumbs button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumbs .empty { height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); }
+.detail-stage.show-photo { padding: 0; overflow: hidden; }
+.detail-stage.show-photo .door { display: none; }
+#stage-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .detail-info { flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 .detail-info h1 { margin-top: -12px; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; }
 .detail-lead { color: var(--text-3); font-size: 17px; }
