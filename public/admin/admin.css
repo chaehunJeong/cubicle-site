@@ -77,5 +77,7 @@ td { padding: 14px 12px; }
 .note-input:focus { outline: none; border-color: var(--ink); background: #FFFFFF; }
 .saving { opacity: .5; }
 
+.demo-banner { background: #FFF6DB; border: 1px solid #EBD9A0; color: #6A4E14; border-radius: 8px; padding: 12px 16px; font-size: 14px; }
+
 .empty { padding: 40px 20px; text-align: center; color: var(--muted); }
 .error { color: #B3261E; }

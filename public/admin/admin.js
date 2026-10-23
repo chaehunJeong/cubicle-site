@@ -15,6 +15,10 @@
   ];
   var COLORS = { black: '블랙', bronze: '브론즈', gold: '골드', gray: '그레이' };
 
+  // 데모 모드: API 없이 예시 데이터로 동작 (GitHub Pages 미리보기용).
+  // API 실패 시 자동 전환하지 않는다 — 운영 중 장애를 가짜 데이터로 가리면 안 되므로.
+  var DEMO = /\.github\.io$/.test(location.hostname) || new URLSearchParams(location.search).has('demo');
+
   var state = { inquiries: [], product: 'all', status: 'all' };
 
   function el(tag, cls, text) {
@@ -133,6 +137,11 @@
   }
 
   async function save(q, patch, control) {
+    if (DEMO) {
+      if ('note' in patch) patch.note = patch.note.trim() || null;
+      Object.assign(q, patch);
+      return;
+    }
     control.classList.add('saving');
     try {
       var res = await fetch('/api/admin/inquiries/' + q.id, {
@@ -149,7 +158,36 @@
     }
   }
 
+  // 데모 모드 CSV: 서버 CSV와 같은 열 구성으로 브라우저에서 생성
+  function downloadDemoCsv(e) {
+    e.preventDefault();
+    var cell = function (v) {
+      var s = v == null ? '' : String(v);
+      return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    };
+    var statusName = function (id) { return STATUSES.find(function (s) { return s.id === id; }).name; };
+    var lines = [['접수일시(UTC)', '업체명', '담당자', '연락처', '제품', '컬러', '수량', '지역', '요청사항', '상태', '메모'].join(',')];
+    state.inquiries.forEach(function (q) {
+      var colors = (q.colors || '').split(',').filter(Boolean).map(function (c) { return COLORS[c] || c; }).join('·');
+      lines.push([q.created_at, q.company, q.person, q.phone, productName(q.product), colors, q.qty, q.region, q.message, statusName(q.status), q.note].map(cell).join(','));
+    });
+    var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'inquiries-demo.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
   async function load() {
+    if (DEMO) {
+      document.getElementById('me').textContent = 'demo@example.com · 데모 모드';
+      document.getElementById('demo-banner').hidden = false;
+      document.getElementById('csv-link').addEventListener('click', downloadDemoCsv);
+      state.inquiries = window.ADMIN_DEMO_DATA();
+      render();
+      return;
+    }
     try {
       var [me, list] = await Promise.all([
         fetch('/api/admin/me').then(function (r) { return r.json(); }),
