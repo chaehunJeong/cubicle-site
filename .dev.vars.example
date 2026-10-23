@@ -1,0 +1,5 @@
+# 로컬 개발용. `cp .dev.vars.example .dev.vars`
+# development 모드에서는 관리자 Access 인증을 건너뛴다.
+ENVIRONMENT=development
+# Cloudflare 공식 테스트 시크릿 (항상 통과)
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA

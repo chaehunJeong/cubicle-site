@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>관리자 · 제품별 문의</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <p class="topbar-title">[브랜드명] 관리자</p>
+    <span class="topbar-user" id="me"></span>
+  </div>
+</header>
+
+<main class="wrap main">
+  <div class="page-head">
+    <div>
+      <h1>제품별 견적 문의</h1>
+      <p class="sub">제품 카드를 누르면 해당 제품에 남긴 연락처만 보입니다.</p>
+    </div>
+    <a class="btn" href="/api/admin/inquiries.csv" download>CSV 다운로드</a>
+  </div>
+
+  <div class="product-cards" id="product-cards"></div>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="list-title">불러오는 중…</h2>
+      <div class="status-filters" id="status-filters"></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>접수일시</th><th>업체 / 담당자</th><th>연락처</th><th>제품</th><th>컬러</th>
+            <th>수량</th><th>지역</th><th>요청사항</th><th>상태</th><th>메모</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="empty" id="empty" hidden>이 조건에 해당하는 문의가 없습니다.</p>
+    <p class="empty error" id="load-error" hidden></p>
+  </section>
+</main>
+
+<script src="/admin/admin.js"></script>
+</body>
+</html>

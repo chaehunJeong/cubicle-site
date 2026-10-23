@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>관리자 제품별 문의</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F2EF}
+a{color:#5E4636}a:hover{color:#3B2C22}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1200px; background: #F3F2EF; color: #1E1E1C; font-family: 'Noto Sans KR', system-ui, sans-serif; font-size: 15px; line-height: 1.55">
+
+<header style="background: #1E1E1C; color: #FFFFFF">
+<div style="max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<p style="margin: 0; font-weight: 800; font-size: 17px">[브랜드명] 관리자</p>
+<div style="display: flex; align-items: center; gap: 16px; font-size: 14px; color: #D6D3CD">
+<span>admin@[도메인] · Cloudflare Access 인증됨</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1280px; margin: 0 auto; padding: 32px 24px 64px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div>
+<h1 style="margin: 0; font-size: 26px; font-weight: 800">제품별 견적 문의</h1>
+<p style="margin: 4px 0 0; color: #5A5751; font-size: 14px">제품 카드를 누르면 해당 제품에 남긴 연락처만 보입니다. (아래 수치·업체는 예시 데이터)</p>
+</div>
+<button type="button" style="height: 44px; padding: 0 18px; border: 1px solid #1E1E1C; background: #FFFFFF; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">CSV 다운로드</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
+<button type="button" onClick="{{ p.pick }}" aria-pressed="{{ p.pressed }}" style="text-align: left; font-family: inherit; cursor: pointer; background: #FFFFFF; border: {{ p.border }}; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 15px; font-weight: 700; color: #1E1E1C">{{ p.name }}</span>
+<span style="display: flex; align-items: baseline; gap: 10px">
+<span style="font-size: 30px; font-weight: 800; color: #1E1E1C">{{ p.total }}</span>
+<span style="font-size: 13px; color: #5A5751">건</span>
+<span style="margin-left: auto; font-size: 13px; font-weight: 700; color: #8A2A12; background: #FBE5DC; border-radius: 999px; padding: 2px 10px">신규 {{ p.fresh }}</span>
+</span>
+</button>
+</sc-for>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 12px; border: 1px solid #E3E0DA">
+<div style="padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #E3E0DA">
+<h2 style="margin: 0; font-size: 18px; font-weight: 800">{{ title }}</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #1E1E1C; color: #FFFFFF; font-weight: 700">전체</span>
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #F3F2EF; color: #3A3835">신규</span>
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #F3F2EF; color: #3A3835">연락완료</span>
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #F3F2EF; color: #3A3835">견적발송</span>
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #F3F2EF; color: #3A3835">계약</span>
+<span style="font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #F3F2EF; color: #3A3835">보류</span>
+</div>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 980px; border-collapse: collapse; font-size: 14px">
+<thead>
+<tr style="text-align: left; color: #5A5751; background: #FAF9F7">
+<th style="padding: 12px 20px; font-weight: 500">접수일시</th>
+<th style="padding: 12px 12px; font-weight: 500">업체 / 담당자</th>
+<th style="padding: 12px 12px; font-weight: 500">연락처</th>
+<th style="padding: 12px 12px; font-weight: 500">제품</th>
+<th style="padding: 12px 12px; font-weight: 500">컬러</th>
+<th style="padding: 12px 12px; font-weight: 500">수량</th>
+<th style="padding: 12px 12px; font-weight: 500">지역</th>
+<th style="padding: 12px 12px; font-weight: 500">상태</th>
+<th style="padding: 12px 20px 12px 12px; font-weight: 500">메모</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+<tr style="border-top: 1px solid #EEECE8; vertical-align: top">
+<td style="padding: 14px 20px; color: #4A4742; white-space: nowrap">{{ r.date }}</td>
+<td style="padding: 14px 12px"><span style="font-weight: 700">{{ r.company }}</span><br><span style="color: #5A5751">{{ r.person }}</span></td>
+<td style="padding: 14px 12px; white-space: nowrap"><a href="tel:01000000000" style="font-weight: 700">{{ r.phone }}</a></td>
+<td style="padding: 14px 12px">{{ r.product }}</td>
+<td style="padding: 14px 12px">{{ r.colors }}</td>
+<td style="padding: 14px 12px; white-space: nowrap">{{ r.qty }}</td>
+<td style="padding: 14px 12px">{{ r.region }}</td>
+<td style="padding: 14px 12px"><span style="display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: {{ r.statusBg }}; color: {{ r.statusFg }}; white-space: nowrap">{{ r.status }}</span></td>
+<td style="padding: 14px 20px 14px 12px; color: #4A4742">{{ r.note }}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; padding: 40px 20px; text-align: center; color: #5A5751">이 제품에는 아직 문의가 없습니다.</p>
+</sc-if>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { product: 'all' };
+  }
+  renderVals() {
+    var self = this;
+    var STATUS = {
+      NEW: { label: '신규', bg: '#FBE5DC', fg: '#8A2A12' },
+      CONTACTED: { label: '연락완료', bg: '#E4ECF7', fg: '#1F3F6E' },
+      QUOTED: { label: '견적발송', bg: '#F4ECD9', fg: '#6A4E14' },
+      CONTRACTED: { label: '계약', bg: '#DFF0E3', fg: '#1D5A2C' },
+      HOLD: { label: '보류', bg: '#ECEBE8', fg: '#4A4742' }
+    };
+    var data = [
+      { p: 'cubicle', date: '10-23 14:12', company: '○○건설', person: '김○○ 과장', phone: '010-0000-0001', product: '컬러 큐비클', colors: '골드', qty: '40칸', region: '경기', s: 'NEW', note: '' },
+      { p: 'set', date: '10-23 10:40', company: '△△휴게소', person: '이○○ 팀장', phone: '010-0000-0002', product: '세트', colors: '블랙·그레이', qty: '24세트', region: '충북', s: 'NEW', note: '' },
+      { p: 'cubicle', date: '10-22 17:05', company: '□□인테리어', person: '박○○', phone: '010-0000-0003', product: '컬러 큐비클', colors: '브론즈', qty: '12칸', region: '서울', s: 'CONTACTED', note: '다음 주 현장 실측' },
+      { p: 'lock', date: '10-22 09:31', company: '◇◇빌딩관리', person: '최○○ 주임', phone: '010-0000-0004', product: '잠금장치', colors: '블랙', qty: '60개', region: '인천', s: 'QUOTED', note: '견적서 메일 발송' },
+      { p: 'bell', date: '10-21 15:48', company: '☆☆몰', person: '정○○', phone: '010-0000-0005', product: '비상벨', colors: '그레이', qty: '30개', region: '서울', s: 'CONTRACTED', note: '11월 둘째 주 납품' },
+      { p: 'cubicle', date: '10-20 11:02', company: '◎◎산업', person: '한○○ 대리', phone: '010-0000-0006', product: '컬러 큐비클', colors: '블랙·골드', qty: '8칸', region: '충남', s: 'HOLD', note: '예산 확정 후 재연락' }
+    ];
+    var prods = [
+      { id: 'all', name: '전체' },
+      { id: 'cubicle', name: '컬러 큐비클' },
+      { id: 'lock', name: '화장실 잠금장치' },
+      { id: 'bell', name: '비상벨' },
+      { id: 'set', name: '큐비클 + 부속품 세트' }
+    ];
+    var sel = this.state.product;
+    var filtered = data.filter(function (d) { return sel === 'all' || d.p === sel; });
+    var selName = prods.filter(function (x) { return x.id === sel; })[0].name;
+    return {
+      products: prods.map(function (x) {
+        var mine = data.filter(function (d) { return x.id === 'all' || d.p === x.id; });
+        var on = x.id === sel;
+        return {
+          name: x.name,
+          total: mine.length,
+          fresh: mine.filter(function (d) { return d.s === 'NEW'; }).length,
+          pressed: on ? 'true' : 'false',
+          border: on ? '2px solid #1E1E1C' : '1px solid #E3E0DA',
+          pick: function () { self.setState({ product: x.id }); }
+        };
+      }),
+      rows: filtered.map(function (d) {
+        var st = STATUS[d.s];
+        return {
+          date: d.date, company: d.company, person: d.person, phone: d.phone,
+          product: d.product, colors: d.colors, qty: d.qty, region: d.region,
+          status: st.label, statusBg: st.bg, statusFg: st.fg, note: d.note || '—'
+        };
+      }),
+      title: selName + ' · 문의 ' + filtered.length + '건',
+      empty: filtered.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

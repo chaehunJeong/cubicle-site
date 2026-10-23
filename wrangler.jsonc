@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cubicle-site",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-01",
+
+  // public/ 정적 파일을 서빙. API와 관리자 페이지는 Worker가 먼저 받아 인증/처리한다.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/admin", "/admin/*"]
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cubicle-db",
+      // `npx wrangler d1 create cubicle-db` 실행 후 출력된 ID로 교체
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // 매일 03:00 KST: 보유기간(1년) 지난 문의 파기
+  "triggers": { "crons": ["0 18 * * *"] },
+
+  "vars": {
+    "ENVIRONMENT": "production",
+    "ACCESS_TEAM_DOMAIN": "REPLACE_TEAM.cloudflareaccess.com",
+    "ACCESS_AUD": "REPLACE_WITH_ACCESS_APP_AUD"
+  }
+  // 시크릿: `npx wrangler secret put TURNSTILE_SECRET`
+}

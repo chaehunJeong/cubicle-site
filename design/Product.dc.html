@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>컬러 큐비클 제품 상세</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4F0}
+a{color:#5E4636}a:hover{color:#3B2C22}
+</style>
+</helmet>
+<div style="width: 100%; background: #F6F4F0; color: #1E1E1C; font-family: 'Noto Sans KR', system-ui, sans-serif; font-size: 16px; line-height: 1.6">
+
+<header style="border-bottom: 1px solid #E3DED5">
+<div style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1E1E1C">
+<span style="display: flex; gap: 3px" aria-hidden="true"><span style="width: 8px; height: 26px; background: #2B2B2A; border-radius: 2px"></span><span style="width: 8px; height: 26px; background: #6B4F43; border-radius: 2px"></span><span style="width: 8px; height: 26px; background: #C2A46E; border-radius: 2px"></span><span style="width: 8px; height: 26px; background: #8A8A8A; border-radius: 2px"></span></span>
+<span style="font-weight: 800; font-size: 20px; letter-spacing: -0.02em">[브랜드명]</span>
+</a>
+<nav aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
+<a href="Main.dc.html" style="text-decoration: none; color: #3A3835">제품</a>
+<a href="Main.dc.html" style="text-decoration: none; color: #3A3835">컬러</a>
+<a href="Main.dc.html" style="text-decoration: none; color: #3A3835">납품 절차</a>
+<a href="#quote" style="text-decoration: none; background: #1E1E1C; color: #FFFFFF; padding: 10px 20px; border-radius: 999px">견적 문의</a>
+</nav>
+</div>
+</header>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 24px 0; font-size: 14px; color: #6E6A63"><a href="Main.dc.html" style="color: #6E6A63">홈</a> / 제품 / 컬러 큐비클</div>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 72px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="{{ altText }}" style="height: 520px; border-radius: 16px; background: linear-gradient(#ECE8E1, #DDD7CC); display: flex; align-items: flex-end; gap: 8px; padding: 48px 40px 0; box-sizing: border-box">
+<div style="flex: 1; height: 420px; background: {{ hex }}; border-radius: 3px 3px 0 0"></div>
+<div style="flex: 1; height: 420px; background: {{ hex }}; border-radius: 3px 3px 0 0"></div>
+<div style="flex: 1; height: 420px; background: {{ hex }}; border-radius: 3px 3px 0 0"></div>
+<div style="flex: 1; height: 420px; background: {{ hex }}; border-radius: 3px 3px 0 0"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A5751">시공 사진 1</div>
+<div style="height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A5751">시공 사진 2</div>
+<div style="height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A5751">잠금장치</div>
+<div style="height: 96px; border-radius: 8px; background: #DDD7CC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A5751">비상벨</div>
+</div>
+</div>
+
+<div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 13px; font-weight: 700; color: #5E4636; letter-spacing: 0.08em">CUBICLE</p>
+<h1 style="margin: -12px 0 0; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25">컬러 큐비클</h1>
+<p style="margin: 0; color: #4A4742; font-size: 17px">사무실·휴게소·상업시설 화장실에 어울리는 컬러 칸막이. 잠금장치와 비상벨까지 같은 컬러로 맞춰 통일감 있게 납품합니다.</p>
+
+<div>
+<p style="margin: 0 0 10px; font-weight: 700">컬러 · <span style="font-weight: 500; color: #4A4742">{{ colorName }} — {{ colorDesc }}</span></p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{ colors }}" as="c" hint-placeholder-count="4">
+<button type="button" onClick="{{ c.pick }}" aria-label="{{ c.name }}" aria-pressed="{{ c.pressed }}" style="width: 56px; height: 56px; border-radius: 50%; background: {{ c.hex }}; border: 3px solid #FFFFFF; box-shadow: {{ c.ring }}; cursor: pointer"></button>
+</sc-for>
+</div>
+</div>
+
+<ul style="margin: 0; padding: 20px 0; list-style: none; border-top: 1px solid #E3DED5; border-bottom: 1px solid #E3DED5; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<li style="display: flex; gap: 16px"><span style="width: 96px; color: #6E6A63; flex-shrink: 0">소재</span><span>[자재명 / 두께]</span></li>
+<li style="display: flex; gap: 16px"><span style="width: 96px; color: #6E6A63; flex-shrink: 0">견적 단위</span><span>칸 단위 (고객 제공 규격 기준)</span></li>
+<li style="display: flex; gap: 16px"><span style="width: 96px; color: #6E6A63; flex-shrink: 0">부속품</span><span>잠금장치 · 비상벨 동일 컬러 적용 가능</span></li>
+<li style="display: flex; gap: 16px"><span style="width: 96px; color: #6E6A63; flex-shrink: 0">최소 주문</span><span>[최소 수량]</span></li>
+<li style="display: flex; gap: 16px"><span style="width: 96px; color: #6E6A63; flex-shrink: 0">설치</span><span>미포함 · 요청 물품만 배송</span></li>
+</ul>
+<a href="#quote" style="text-decoration: none; text-align: center; background: #1E1E1C; color: #FFFFFF; font-weight: 700; padding: 16px; border-radius: 8px">이 제품으로 견적 받기</a>
+</div>
+</section>
+
+<section id="quote" style="background: #FFFFFF; border-top: 1px solid #E3DED5">
+<div style="max-width: 880px; margin: 0 auto; padding: 72px 24px 96px">
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">견적 문의</h2>
+<p style="margin: 8px 0 32px; color: #5A5751">* 표시는 필수 항목입니다. 남겨주신 연락처로 담당자가 직접 연락드립니다.</p>
+<form style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">업체명 *<input type="text" placeholder="예) ○○건설" style="height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 14px; font-size: 16px; font-family: inherit"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">담당자명<input type="text" placeholder="예) 김○○ 과장" style="height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 14px; font-size: 16px; font-family: inherit"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">연락처 *<input type="tel" placeholder="010-0000-0000" style="height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 14px; font-size: 16px; font-family: inherit"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">제품 *<select style="height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 12px; font-size: 16px; font-family: inherit; background: #FFFFFF"><option>컬러 큐비클</option><option>화장실 잠금장치</option><option>비상벨</option><option>큐비클 + 부속품 세트</option></select></label>
+<fieldset style="grid-column: 1 / -1; border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-size: 14px; font-weight: 500; padding: 0; margin-bottom: 8px">희망 컬러 (복수 선택)</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<label style="display: flex; align-items: center; gap: 8px; border: 1px solid #CFC8BC; border-radius: 999px; padding: 10px 16px; font-size: 15px"><input type="checkbox"><span style="width: 16px; height: 16px; border-radius: 50%; background: #2B2B2A"></span>블랙</label>
+<label style="display: flex; align-items: center; gap: 8px; border: 1px solid #CFC8BC; border-radius: 999px; padding: 10px 16px; font-size: 15px"><input type="checkbox"><span style="width: 16px; height: 16px; border-radius: 50%; background: #6B4F43"></span>브론즈</label>
+<label style="display: flex; align-items: center; gap: 8px; border: 1px solid #CFC8BC; border-radius: 999px; padding: 10px 16px; font-size: 15px"><input type="checkbox" checked><span style="width: 16px; height: 16px; border-radius: 50%; background: #C2A46E"></span>골드</label>
+<label style="display: flex; align-items: center; gap: 8px; border: 1px solid #CFC8BC; border-radius: 999px; padding: 10px 16px; font-size: 15px"><input type="checkbox"><span style="width: 16px; height: 16px; border-radius: 50%; background: #8A8A8A"></span>그레이</label>
+</div>
+</fieldset>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">예상 수량<span style="display: flex; align-items: center; gap: 8px"><input type="number" placeholder="20" style="flex: 1; min-width: 0; height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 14px; font-size: 16px; font-family: inherit"><span style="color: #4A4742">칸</span></span></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">배송 지역<select style="height: 48px; border: 1px solid #CFC8BC; border-radius: 8px; padding: 0 12px; font-size: 16px; font-family: inherit; background: #FFFFFF"><option>선택</option><option>서울</option><option>경기</option><option>인천</option><option>충북</option><option>충남·대전</option><option>그 외 지역</option></select></label>
+<label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">요청사항<textarea rows="4" placeholder="칸 수와 치수(가로×높이), 희망 납기, 부속품 포함 여부 등을 적어주세요." style="border: 1px solid #CFC8BC; border-radius: 8px; padding: 12px 14px; font-size: 16px; font-family: inherit; resize: vertical"></textarea></label>
+<div style="grid-column: 1 / -1; background: #F6F4F0; border-radius: 8px; padding: 16px 18px; font-size: 14px; color: #3A3835; display: flex; flex-direction: column; gap: 10px">
+<label style="display: flex; align-items: flex-start; gap: 10px; font-weight: 700"><input type="checkbox" style="width: 20px; height: 20px; margin: 1px 0 0">[필수] 개인정보 수집·이용 동의</label>
+<p style="margin: 0 0 0 30px; color: #4A4742">수집 항목: 업체명, 담당자명, 연락처, 요청사항 · 목적: 견적 상담 및 납품 연락 · 보유기간: 문의일로부터 1년 후 파기</p>
+</div>
+<div style="grid-column: 1 / -1; height: 66px; width: 300px; border: 1px dashed #CFC8BC; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #6E6A63">Cloudflare Turnstile 위젯 자리</div>
+<button type="button" onClick="{{ send }}" style="grid-column: 1 / -1; height: 56px; border: none; border-radius: 8px; background: #1E1E1C; color: #FFFFFF; font-size: 17px; font-weight: 700; font-family: inherit; cursor: pointer">견적 요청하기</button>
+</form>
+</sc-if>
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div style="text-align: center; padding: 48px 0; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #1E1E1C; display: flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+<h2 style="margin: 0; font-size: 28px; font-weight: 800">견적 문의가 접수되었습니다</h2>
+<p style="margin: 0; color: #4A4742">담당자가 영업일 기준 [1일] 이내에 연락드리겠습니다.</p>
+<button type="button" onClick="{{ reset }}" style="margin-top: 8px; height: 48px; padding: 0 24px; border: 1px solid #1E1E1C; border-radius: 8px; background: transparent; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer">다른 제품도 문의하기</button>
+</div>
+</sc-if>
+</div>
+</section>
+
+<footer style="background: #ECE8E1; border-top: 1px solid #E3DED5">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; font-size: 14px; color: #4A4742">
+<p style="margin: 0">상호 [상호명] · 대표 [대표자명] · 사업자등록번호 [000-00-00000] · 대표번호 [대표번호]</p>
+<p style="margin: 4px 0 0"><a href="#quote" style="font-weight: 700">개인정보처리방침</a></p>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { color: 'gold', sent: false };
+  }
+  renderVals() {
+    var list = [
+      { id: 'black', name: '블랙', desc: '모던하고 세련된 분위기', hex: '#2B2B2A' },
+      { id: 'bronze', name: '브론즈', desc: '따뜻하고 고급스러운 분위기', hex: '#6B4F43' },
+      { id: 'gold', name: '골드', desc: '밝고 화사한 공간 연출', hex: '#C2A46E' },
+      { id: 'gray', name: '그레이', desc: '차분하고 깔끔한 분위기', hex: '#8A8A8A' }
+    ];
+    var self = this;
+    var cur = list.filter(function (c) { return c.id === self.state.color; })[0] || list[2];
+    return {
+      colors: list.map(function (c) {
+        var on = c.id === self.state.color;
+        return {
+          name: c.name, hex: c.hex,
+          pressed: on ? 'true' : 'false',
+          ring: on ? '0 0 0 2px #1E1E1C' : '0 0 0 1px #CFC8BC',
+          pick: function () { self.setState({ color: c.id }); }
+        };
+      }),
+      hex: cur.hex,
+      colorName: cur.name,
+      colorDesc: cur.desc,
+      altText: cur.name + ' 컬러 큐비클 미리보기',
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      send: function () { self.setState({ sent: true }); },
+      reset: function () { self.setState({ sent: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

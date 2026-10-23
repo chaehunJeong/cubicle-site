@@ -1,0 +1,80 @@
+:root {
+  --bg: #F3F2EF;
+  --surface: #FFFFFF;
+  --ink: #1E1E1C;
+  --text-2: #3A3835;
+  --text-3: #4A4742;
+  --muted: #5A5751;
+  --line: #E3E0DA;
+  --line-soft: #EEECE8;
+  --head-bg: #FAF9F7;
+  --accent: #5E4636;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Noto Sans KR', system-ui, sans-serif; font-size: 15px; line-height: 1.55; }
+h1, h2, p { margin: 0; }
+a { color: var(--accent); }
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.topbar { background: var(--ink); color: #FFFFFF; }
+.topbar .wrap { padding-top: 14px; padding-bottom: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.topbar-title { font-weight: 800; font-size: 17px; }
+.topbar-user { font-size: 14px; color: #D6D3CD; }
+
+.main { padding-top: 32px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 28px; }
+.page-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.page-head h1 { font-size: 26px; font-weight: 800; }
+.sub { margin-top: 4px; color: var(--muted); font-size: 14px; }
+.btn {
+  display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border: 1px solid var(--ink);
+  background: var(--surface); color: var(--ink); border-radius: 8px; font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer;
+}
+
+.product-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.pcard {
+  text-align: left; font-family: inherit; cursor: pointer; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px;
+}
+.pcard[aria-pressed="true"] { border: 2px solid var(--ink); padding: 17px; }
+.pcard-name { font-size: 15px; font-weight: 700; color: var(--ink); }
+.pcard-nums { display: flex; align-items: baseline; gap: 10px; }
+.pcard-total { font-size: 30px; font-weight: 800; color: var(--ink); }
+.pcard-unit { font-size: 13px; color: var(--muted); }
+.pcard-new { margin-left: auto; font-size: 13px; font-weight: 700; color: #8A2A12; background: #FBE5DC; border-radius: 999px; padding: 2px 10px; }
+
+.panel { background: var(--surface); border-radius: 12px; border: 1px solid var(--line); }
+.panel-head { padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); }
+.panel-head h2 { font-size: 18px; font-weight: 800; }
+.status-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.status-filters button { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: none; background: var(--bg); color: var(--text-2); cursor: pointer; }
+.status-filters button[aria-pressed="true"] { background: var(--ink); color: #FFFFFF; font-weight: 700; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 1100px; border-collapse: collapse; font-size: 14px; }
+thead tr { text-align: left; color: var(--muted); background: var(--head-bg); }
+th { padding: 12px; font-weight: 500; }
+th:first-child, td:first-child { padding-left: 20px; }
+th:last-child, td:last-child { padding-right: 20px; }
+tbody tr { border-top: 1px solid var(--line-soft); vertical-align: top; }
+td { padding: 14px 12px; }
+.nowrap { white-space: nowrap; }
+.company { font-weight: 700; }
+.person, .date { color: var(--text-3); }
+.phone { font-weight: 700; }
+.message { max-width: 240px; color: var(--text-3); white-space: pre-wrap; }
+
+.status-select { font: inherit; font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 999px; border: none; cursor: pointer; }
+.s-NEW { background: #FBE5DC; color: #8A2A12; }
+.s-CONTACTED { background: #E4ECF7; color: #1F3F6E; }
+.s-QUOTED { background: #F4ECD9; color: #6A4E14; }
+.s-CONTRACTED { background: #DFF0E3; color: #1D5A2C; }
+.s-HOLD { background: #ECEBE8; color: #4A4742; }
+
+.note-input { font: inherit; font-size: 14px; width: 100%; min-width: 180px; border: 1px solid transparent; border-radius: 6px; padding: 4px 6px; background: transparent; color: var(--text-3); }
+.note-input:hover { border-color: var(--line); }
+.note-input:focus { outline: none; border-color: var(--ink); background: #FFFFFF; }
+.saving { opacity: .5; }
+
+.empty { padding: 40px 20px; text-align: center; color: var(--muted); }
+.error { color: #B3261E; }

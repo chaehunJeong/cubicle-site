@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제품 상세 · [브랜드명]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="brand">
+      <span class="brand-mark" aria-hidden="true"><span class="bg-black"></span><span class="bg-bronze"></span><span class="bg-gold"></span><span class="bg-gray"></span></span>
+      <span class="brand-name">[브랜드명]</span>
+    </a>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a href="/#products">제품</a>
+      <a href="/#colors">컬러</a>
+      <a href="/#process">납품 절차</a>
+      <a href="#quote" class="nav-cta">견적 문의</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="container breadcrumb"><a href="/">홈</a> / <a href="/#products">제품</a> / <span data-bind="name"></span></div>
+
+<section class="container detail">
+  <div class="detail-media">
+    <div class="detail-stage" role="img" id="stage">
+      <div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div>
+    </div>
+    <!-- TODO: 실제 사진으로 교체 -->
+    <div class="thumbs"><div>시공 사진 1</div><div>시공 사진 2</div><div>잠금장치</div><div>비상벨</div></div>
+  </div>
+
+  <div class="detail-info">
+    <p class="tag" style="font-size: 13px" data-bind="tag"></p>
+    <h1 data-bind="name"></h1>
+    <p class="detail-lead" data-bind="lead"></p>
+    <div>
+      <p style="margin-bottom: 10px; font-weight: 700">컬러 · <span id="color-label" style="font-weight: 500; color: var(--text-3)"></span></p>
+      <div class="color-picker" id="color-picker"></div>
+    </div>
+    <ul class="specs" id="specs"></ul>
+    <a href="#quote" class="btn btn-primary">이 제품으로 견적 받기</a>
+  </div>
+</section>
+
+<section id="quote" class="quote-section">
+  <div class="inner">
+    <div id="quote-form-wrap">
+      <h2>견적 문의</h2>
+      <p class="muted" style="margin: 8px 0 32px">* 표시는 필수 항목입니다. 남겨주신 연락처로 담당자가 직접 연락드립니다.</p>
+      <form class="form" data-inquiry="product" id="quote-form" novalidate style="gap: 18px">
+        <label class="field">업체명 *<input class="input" name="company" type="text" placeholder="예) ○○건설" required maxlength="100"></label>
+        <label class="field">담당자명<input class="input" name="person" type="text" placeholder="예) 김○○ 과장" maxlength="50"></label>
+        <label class="field">연락처 *<input class="input" name="phone" type="tel" placeholder="010-0000-0000" required maxlength="20"></label>
+        <label class="field">제품 *<select class="select" name="product" id="product-select" required></select></label>
+        <fieldset class="full">
+          <legend>희망 컬러 (복수 선택)</legend>
+          <div class="chips" id="color-chips"></div>
+        </fieldset>
+        <label class="field">예상 수량<span class="with-unit"><input class="input" name="qty" type="number" min="1" placeholder="20"><span id="unit" style="color: var(--text-3)"></span></span></label>
+        <label class="field">배송 지역<select class="select" name="region" id="region-select"><option value="">선택</option></select></label>
+        <label class="field full">요청사항<textarea class="textarea" name="message" rows="4" maxlength="2000" placeholder="칸 수와 치수(가로×높이), 희망 납기, 부속품 포함 여부 등을 적어주세요."></textarea></label>
+        <div class="consent-box full">
+          <label class="consent"><input type="checkbox" name="consent">[필수] 개인정보 수집·이용 동의</label>
+          <p>수집 항목: 업체명, 담당자명, 연락처, 요청사항 · 목적: 견적 상담 및 납품 연락 · 보유기간: 문의일로부터 1년 후 파기</p>
+        </div>
+        <div class="turnstile full"></div>
+        <p class="form-error full" role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-lg full">견적 요청하기</button>
+      </form>
+    </div>
+    <div class="done" id="done" hidden>
+      <span class="done-icon" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
+      <h2>견적 문의가 접수되었습니다</h2>
+      <p class="muted">담당자가 영업일 기준 [1일] 이내에 연락드리겠습니다.</p>
+      <button type="button" class="btn btn-outline" id="again" style="margin-top: 8px">다른 제품도 문의하기</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container" style="padding-top: 32px; padding-bottom: 32px; display: block">
+    <p>상호 [상호명] · 대표 [대표자명] · 사업자등록번호 [000-00-00000] · 대표번호 [대표번호]</p>
+    <p style="margin-top: 4px"><a href="/privacy" style="font-weight: 700">개인정보처리방침</a></p>
+  </div>
+</footer>
+
+<script src="/assets/config.js"></script>
+<script src="/assets/catalog.js"></script>
+<script src="/assets/product.js"></script>
+<script src="/assets/inquiry-form.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit" async defer></script>
+</body>
+</html>
